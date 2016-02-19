@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from b3j0f.conf import Configurable, Category
+from b3j0f.conf import Configurable, Category, Parameter
 from b3j0f.utils.path import lookup
 
 from link.wsgi import CONF_BASE_PATH
@@ -31,7 +31,7 @@ class Router(LoggingObject):
 
     Example of configuration:
 
-    .. block-code:
+    .. code-block:: javascript
 
        {
           "ROUTER": {

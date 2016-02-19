@@ -14,13 +14,16 @@ A simple route is just a function which takes two parameters:
 
 For example:
 
-.. block-code:: python
+.. code-block:: python
 
    def hello(req, resp):
        resp.status = 200
        resp.content = 'Hello world'
 
-See the API of Request and Response objects for more informations.
+See the API of :ref:`Request <modulereq>` and :ref:`Response <moduleresp>`
+objects for more informations.
+
+.. |Request| `
 
 Class-based view
 ----------------
@@ -28,7 +31,7 @@ Class-based view
 A route is just a callable object, if a class is used, then it will be
 instantiated. The called handler is a method named after HTTP verbs:
 
-.. block-code:: python
+.. code-block:: python
 
    class Hello(object):
        def get(self, req, resp):
@@ -41,11 +44,12 @@ A simple middleware
 Middlewares are objects which are applied to the request before and after the
 handling of the request.
 
-It can be any objects respecting the API of the Middleware class.
+It can be any objects respecting the API of the :ref:`Middleware <modulemid>`
+class.
 
 Example:
 
-.. block-code:: python
+.. code-block:: python
 
    from link.wsgi.middleware import Middleware
 
@@ -62,14 +66,12 @@ Example:
          # do something with resp
          # do something with handler
 
-.. _route_conf:
-
 Routes configuration
 --------------------
 
 Configuration file for the router is stored in:
 
-.. block-code:: bash
+.. code-block:: text
 
    $B3J0F_CONF_DIR/link/wsgi/router.conf
 
@@ -77,7 +79,7 @@ Here is an example of configuration where the simple route ``hello()`` is in
 the package ``myapp.routes`` and the middleware ``MyMiddleware`` is in the
 package ``myapp.middlewares``:
 
-.. block-code:: javascript
+.. code-block:: javascript
 
    {
       "ROUTER": {
@@ -105,7 +107,7 @@ Creating virtualenv
 
 Assuming you're in your Python package folder:
 
-.. block-code:: bash
+.. code-block:: bash
 
    $ virtualenv myapp-venv
    $ . ./myapp-venv/bin/activate
@@ -117,7 +119,7 @@ Configuring the whole thing
 
 We need the following *supervisord* service:
 
-.. block-code:: ini
+.. code-block:: ini
 
    [program:myapp]
 
@@ -141,7 +143,7 @@ etc/link/wsgi/base.conf
 etc/link/wsgi/router.conf
 *************************
 
-See :ref:` routes configuration <_route_conf>`.
+See `Routes configuration`_.
 
 Running everything
 ------------------
