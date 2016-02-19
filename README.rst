@@ -7,4 +7,6 @@ developments are routes and eventually middlewares.
 The rest is done via the configuration of the library, allowing the reuse of
 the code.
 
-See documentation for more informations.
+See documentation_ for more informations.
+
+.. _documentation: https://linkwsgi.readthedocs.com
