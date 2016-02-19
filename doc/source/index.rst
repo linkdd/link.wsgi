@@ -14,7 +14,7 @@ the code.
 
 Check out the source code on Github_.
 
-.. _Github: (https://github.com/linkdd/link.wsgi
+.. _Github: https://github.com/linkdd/link.wsgi
 
 
 Contents:
