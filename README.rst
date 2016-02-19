@@ -9,4 +9,4 @@ the code.
 
 See documentation_ for more informations.
 
-.. _documentation: https://linkwsgi.readthedocs.com
+.. _documentation: https://linkwsgi.readthedocs.org
