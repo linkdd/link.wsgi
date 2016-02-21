@@ -3,8 +3,8 @@
 from b3j0f.conf import Configurable, Category
 from b3j0f.utils.iterable import isiterable
 
+from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
-from link.wsgi.base import LoggingObject
 
 from httplib import responses as httpresponses
 from six import string_types

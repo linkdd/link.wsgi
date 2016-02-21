@@ -2,8 +2,8 @@
 
 from b3j0f.conf import Configurable, Category, Parameter
 
+from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
-from link.wsgi.base import LoggingObject
 from link.wsgi.url import parse_qs
 
 from six.moves.urllib.parse import unquote

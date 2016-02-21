@@ -13,6 +13,7 @@ AUTHOR = 'David Delassus'
 AUTHOR_EMAIL = 'david.jose.delassus@gmail.com'
 LICENSE = 'MIT'
 REQUIREMENTS = [
+    'link.utils',
     'b3j0f.utils',
     'b3j0f.conf',
     'six'

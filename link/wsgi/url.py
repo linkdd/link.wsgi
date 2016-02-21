@@ -5,7 +5,7 @@ from six.moves.urllib.parse import parse_qs as base_parse_qs
 
 def parse_qs(query):
     """
-    Override six.moves.urllib.parse.parse_qs to handle array parameters
+    Override ``six.moves.urllib.parse.parse_qs`` to handle array parameters
     """
 
     result = {}

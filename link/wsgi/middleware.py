@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from b3j0f.conf import Configurable, Category
+from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
-from link.wsgi.base import LoggingObject
 
 
 @Configurable(

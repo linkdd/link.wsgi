@@ -12,14 +12,6 @@ link.wsgi.app module
     :undoc-members:
     :show-inheritance:
 
-link.wsgi.base module
----------------------
-
-.. automodule:: link.wsgi.base
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 .. _modulemid:
 
 link.wsgi.middleware module

@@ -3,8 +3,8 @@
 from b3j0f.conf import Configurable, Category, Parameter
 from b3j0f.utils.path import lookup
 
+from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
-from link.wsgi.base import LoggingObject
 
 from inspect import isclass
 from re import match
@@ -92,6 +92,8 @@ class Router(LoggingObject):
         if middlewares is not None:
             self.middlewares = middlewares
 
+        self.objcache = {}
+
     def dispatch(self, req, resp):
         """
         Dispatch request to handler, which will fill response.
@@ -112,20 +114,38 @@ class Router(LoggingObject):
                 # check if request method is allowed for route
                 if req.method in route:
                     try:
-                        # fetch handler, instantiate it if it's a class
-                        handler = lookup(route[req.method])
+                        h = hash('{0}{1}'.format(urlpattern, req.method))
 
-                        if isclass(handler):
-                            # the handler for a class is a method
-                            # the method's name is the request method
-                            handler = getattr(handler(), req.method.lower())
+                        # check if handler has already been instantiated
+                        if h not in self.objcache:
+                            # fetch handler, instantiate it if it's a class
+                            handler = lookup(route[req.method])
+
+                            if isclass(handler):
+                                # the handler for a class is a method
+                                # the method's name is the request method
+                                handler = getattr(
+                                    handler(),
+                                    req.method.lower()
+                                )
+
+                            self.objcache[h] = handler
+
+                        else:
+                            handler = self.objcache[h]
+
+                        # instantiate middlewares if needed
+                        middlewares = []
+
+                        for middleware in self.middlewares:
+                            h = hash(middleware)
+
+                            if h not in self.objcache:
+                                self.objcache[h] = lookup(middleware)()
+
+                            middlewares.append(self.objcache[h])
 
                         # apply middlewares on request/response/handler
-                        middlewares = [
-                            lookup(mdw)()
-                            for mdw in self.middlewares
-                        ]
-
                         abort = False
                         for middleware in middlewares:
                             if middleware.before(req, resp, handler):
