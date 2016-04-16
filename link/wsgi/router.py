@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from b3j0f.conf import Configurable, Category, Parameter
+from b3j0f.conf import Configurable, category, Parameter
 from b3j0f.utils.path import lookup
 
 from link.utils.logging import LoggingObject
@@ -12,10 +12,10 @@ from re import match
 
 @Configurable(
     paths='{0}/router.conf'.format(CONF_BASE_PATH),
-    conf=Category(
+    conf=category(
         'ROUTER',
-        Parameter('urlpatterns'),
-        Parameter('middlewares')
+        Parameter(name='urlpatterns', ptype=dict),
+        Parameter(name='middlewares', ptype=list)
     )
 )
 class Router(LoggingObject):

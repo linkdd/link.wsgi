@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from b3j0f.conf import Configurable, Category
+from b3j0f.conf import Configurable, category
 from b3j0f.utils.iterable import isiterable
 
 from link.utils.logging import LoggingObject
@@ -13,7 +13,7 @@ import json
 
 @Configurable(
     paths='{0}/response.conf'.format(CONF_BASE_PATH),
-    conf=Category('RESPONSE')
+    conf=category('RESPONSE')
 )
 class Response(LoggingObject):
     """

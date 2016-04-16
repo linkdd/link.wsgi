@@ -13,10 +13,9 @@ AUTHOR = 'David Delassus'
 AUTHOR_EMAIL = 'david.jose.delassus@gmail.com'
 LICENSE = 'MIT'
 REQUIREMENTS = [
-    'link.utils',
-    'b3j0f.utils',
-    'b3j0f.conf',
-    'six'
+    'link.utils==0.2',
+    'b3j0f.conf==0.3.13',
+    'six==1.10.0'
 ]
 
 
@@ -26,7 +25,7 @@ def get_cwd():
 
 
 def get_version(default='0.1'):
-    sys.path.append(get_cwd())
+    sys.path.insert(0, get_cwd())
     from link import wsgi as mod
 
     return getattr(mod, '__version__', default)
@@ -72,7 +71,6 @@ setup(
     author=AUTHOR,
     author_email=AUTHOR_EMAIL,
     packages=find_packages(),
-    package_dir={'': get_cwd()},
     scripts=get_scripts(),
     test_suite=get_test_suite(),
     install_requires=REQUIREMENTS

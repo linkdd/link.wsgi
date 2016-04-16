@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from b3j0f.conf import Configurable, Category, Parameter
+from b3j0f.conf import Configurable, category, Parameter
 
 from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
@@ -13,9 +13,9 @@ from posixpath import normpath
 
 @Configurable(
     paths='{0}/request.conf'.format(CONF_BASE_PATH),
-    conf=Category(
+    conf=category(
         'REQUEST',
-        Parameter('charsets')
+        Parameter(name='charsets', ptype=list)
     )
 )
 class Request(LoggingObject):

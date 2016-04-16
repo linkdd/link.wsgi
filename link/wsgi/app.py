@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from b3j0f.conf import Configurable, Category
+from b3j0f.conf import Configurable, category
 from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
 from link.wsgi.router import Router
@@ -10,7 +10,7 @@ from link.wsgi.resp import Response
 
 @Configurable(
     paths='{0}/app.conf'.format(CONF_BASE_PATH),
-    conf=Category('APPLICATION')
+    conf=category('APPLICATION')
 )
 class Application(LoggingObject):
     """
