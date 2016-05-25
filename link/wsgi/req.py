@@ -2,7 +2,6 @@
 
 from b3j0f.conf import Configurable, category, Parameter
 
-from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
 from link.wsgi.url import parse_qs
 
@@ -18,7 +17,7 @@ from posixpath import normpath
         Parameter(name='charsets', ptype=list)
     )
 )
-class Request(LoggingObject):
+class Request(object):
     """
     Request object encapsulating WSGI environ dict.
     """

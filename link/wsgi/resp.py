@@ -3,7 +3,6 @@
 from b3j0f.conf import Configurable, category
 from b3j0f.utils.iterable import isiterable
 
-from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
 
 from httplib import responses as httpresponses
@@ -15,7 +14,7 @@ import json
     paths='{0}/response.conf'.format(CONF_BASE_PATH),
     conf=category('RESPONSE')
 )
-class Response(LoggingObject):
+class Response(object):
     """
     Response object encapsulating WSGI response handler.
     """

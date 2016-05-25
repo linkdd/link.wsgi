@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from b3j0f.conf import Configurable, category
-from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
 
 
@@ -9,7 +8,7 @@ from link.wsgi import CONF_BASE_PATH
     paths='{0}/middleware.conf'.format(CONF_BASE_PATH),
     conf=category('MIDDLEWARE')
 )
-class Middleware(LoggingObject):
+class Middleware(object):
     """
     Middleware class.
 

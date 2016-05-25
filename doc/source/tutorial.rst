@@ -125,25 +125,6 @@ We need the following *supervisord* service:
 
    environment=B3J0F_CONF_DIR="%(ENV_VIRTUAL_ENV)s/etc"
    command=gunicorn link.wsgi.app:application
-   stderr_logfile=%(ENV_VIRTUAL_ENV)s/myapp.log
-
-Then we can add the following configuration files.
-
-etc/link/wsgi/base.conf
-***********************
-
-.. code-block:: ini
-
-   [LOGGING]
-
-   log_level=info
-   # log_name=myapp
-   # log_file=/var/log/myapp.log
-
-etc/link/wsgi/router.conf
-*************************
-
-See `Routes configuration`_.
 
 Running everything
 ------------------

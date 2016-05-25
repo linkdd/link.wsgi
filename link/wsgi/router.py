@@ -3,11 +3,11 @@
 from b3j0f.conf import Configurable, category, Parameter
 from b3j0f.utils.path import lookup
 
-from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
 
 from inspect import isclass
 from re import match
+import logging
 
 
 @Configurable(
@@ -18,7 +18,7 @@ from re import match
         Parameter(name='middlewares', ptype=list)
     )
 )
-class Router(LoggingObject):
+class Router(object):
     """
     Request dispatcher.
 
@@ -85,6 +85,8 @@ class Router(LoggingObject):
         """
 
         super(Router, self).__init__(*args, **kwargs)
+
+        self.logger = logging.getLogger('link.wsgi.router')
 
         if urlpatterns is not None:
             self.urlpatterns = urlpatterns

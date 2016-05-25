@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from b3j0f.conf import Configurable, category
-from link.utils.logging import LoggingObject
 from link.wsgi import CONF_BASE_PATH
 from link.wsgi.router import Router
 from link.wsgi.req import Request
 from link.wsgi.resp import Response
+
+import logging
 
 
 @Configurable(
     paths='{0}/app.conf'.format(CONF_BASE_PATH),
     conf=category('APPLICATION')
 )
-class Application(LoggingObject):
+class Application(object):
     """
     WSGI Application class.
     """
@@ -21,6 +22,7 @@ class Application(LoggingObject):
         super(Application, self).__init__(*args, **kwargs)
 
         self.router = Router()
+        self.logger = logging.getLogger('link.wsgi.app')
 
     def __call__(self, environ, start_response):
         """
