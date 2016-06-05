@@ -5,8 +5,8 @@ from b3j0f.utils.iterable import isiterable
 
 from link.wsgi import CONF_BASE_PATH
 
-from httplib import responses as httpresponses
-from six import string_types
+from six.moves.http_client import responses as httpresponses
+from six import string_types, binary_type
 import json
 
 
@@ -56,16 +56,23 @@ class Response(object):
         if value is None:
             value = ''
 
-        elif not isinstance(value, string_types) and not isiterable(value):
+        elif not isinstance(value, string_types):
             try:
                 value = json.dumps(value)
 
             except ValueError:
                 value = str(value)
 
-            value = value.splitlines()
+        if not isiterable(value, exclude=string_types):
+            value = [
+                '{0}\n'.format(v)
+                for v in value.splitlines()
+            ]
 
-        self._content = value
+        self._content = [
+            v.encode('utf-8')
+            for v in value
+        ]
         self['Content-Length'] = sum([len(c) for c in self._content])
 
     @property
@@ -84,7 +91,7 @@ class Response(object):
 
     @property
     def headers(self):
-        return list(self._headers.items())
+        return [(k, str(v)) for k, v in self._headers.items()]
 
     def __getitem__(self, item):
         """

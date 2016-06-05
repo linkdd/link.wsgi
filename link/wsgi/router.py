@@ -7,6 +7,7 @@ from link.wsgi import CONF_BASE_PATH
 
 from inspect import isclass
 from re import match
+import traceback
 import logging
 
 
@@ -167,10 +168,10 @@ class Router(object):
                             if middleware.after(req, resp, handler):
                                 break
 
-                    except Exception as err:
+                    except Exception:
                         # if any error happens, return a 500 internal error
                         resp.status = 500
-                        resp.content = str(err)
+                        resp.content = traceback.format_exc()
 
                 else:
                     # if the method was not configured for the route, return a
